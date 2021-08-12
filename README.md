@@ -6,8 +6,14 @@ Example: php-laravel-login-demo.othman.info
 
 
 ## About Project Demo
+A demo project built with laravel [Laravel framework](https://github.com/laravel/framework/tree/6.x) version 6.X . 
 
+- [x] User registration (email address, username, password).
+- [x] User receives a email to confirm the email address.
+- [x] User login  and logout .
 
+- [x] Password reset .
+- [x] Login using magic link (by email) .
 
 ## How to install
 ```bash
@@ -34,18 +40,4 @@ php .\artisan key:generate
 php .\artisan migrate
 
 ```
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
