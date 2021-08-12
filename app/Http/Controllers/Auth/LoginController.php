@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
+    use AuthenticatesUsers;
+
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -19,7 +21,28 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+
+
+    /**
+     * username field in database
+     *
+     *
+     */
+    public const username = "email";
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return LoginController::username;
+    }
+
+
+
+
 
     /**
      * Where to redirect users after login.

@@ -14,3 +14,31 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+ * passwordless routers
+ * passwordless : form view
+ * /passwordless/sendemail : post controller
+ */
+Route::get('/passwordless', "Auth\PasswordlessController@sendLinkForm")->name("passwordless");
+Route::post('/passwordless/sendemail', "Auth\PasswordlessController@sendLink")->name("passwordlessSendLink");
+
+/**
+ * active login passwordless
+ *
+ *
+ *
+ */
+Route::get('/passwordless/{id}', "Auth\PasswordlessController@active")->middleware("signed")
+->name("magiclink");
+
+
+
+
+
+
+Route::get('/logout', "Auth\LoginController@logout")->name("logout.get");
+
+Auth::routes(['verify' => true]);
+
+

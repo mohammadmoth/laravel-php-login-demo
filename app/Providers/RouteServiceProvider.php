@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/user/home';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -46,6 +46,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapUserRoutes();
+
         //
     }
 
@@ -59,8 +61,32 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
+    }
+
+
+
+
+    /**
+     * I would just like to confirm here that the middleware used should be used in all cases for users .
+     * All URL will be Start user/
+     * for Example: demologin.othman.info/user/dashboard
+     *              demologin.othman.info/user/{URLInFile}
+     * Middleware works here : web ,auth and verified
+     * web      : web middleware
+     * auth     : Ensure that you are logged in
+     * verified : Ensure that the email address has been confirmed
+     *
+     * @return void
+     */
+    protected function mapUserRoutes()
+    {
+
+        Route::prefix("user")
+            ->middleware(["web", 'auth', 'verified'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/user.php'));
     }
 
     /**
@@ -73,8 +99,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
     }
 }
