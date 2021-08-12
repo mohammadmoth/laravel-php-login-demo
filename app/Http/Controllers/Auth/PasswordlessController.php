@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Notifications\Passwordless;
+use App\Notifications\YourAccountIsActive;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Facade\FlareClient\Http\Response;
@@ -131,18 +132,20 @@ class PasswordlessController extends Controller
     {
 
         Auth::loginUsingId($id);
-        /* @User */
+
+        Auth::user()->notify(new YourAccountIsActive());
         Auth::user()->markEmailAsVerified();
         return Response()->redirectTo($this->redirectTo);
     }
 
     /**
+     *
      * @param int $userid userid
      * @param int $expire time expire in Seconds
      *
      * @return string
      */
-    protected function keyGeneration($userid, $expire = 3600)
+    protected function UrlGeneration($userid, $expire = 3600)
     {
         return URL::temporarySignedRoute(
             'magiclink',
