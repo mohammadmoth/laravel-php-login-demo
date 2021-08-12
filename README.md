@@ -33,9 +33,6 @@ php .\artisan key:generate
 
 #Add info in env file like database name , username , password , email  . Please see .env.fullexample file
 
-php .\artisan key:generate
-
-
 #for create table in database 
 php .\artisan migrate
 
